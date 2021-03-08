@@ -7063,7 +7063,7 @@
         },
         {
             "name": "symfony/uid",
-            "version": "v5.2.3",
+            "version": "v5.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/uid.git",
@@ -7113,7 +7113,7 @@
                 "uuid"
             ],
             "support": {
-                "source": "https://github.com/symfony/uid/tree/v5.2.3"
+                "source": "https://github.com/symfony/uid/tree/v5.2.4"
             },
             "funding": [
                 {
