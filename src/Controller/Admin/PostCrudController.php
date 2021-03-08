@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -25,10 +26,10 @@ class PostCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
             AssociationField::new('author'),
             TextField::new('title'),
-            TextEditorField::new('content'),
-            DateTimeField::new('CreatedAt'),
-            BooleanField::new('IsPublished'),
-            BooleanField::new('IsDeleted')
+            TextareaField::new('content'),
+            DateTimeField::new('createdAt'),
+            BooleanField::new('isPublished'),
+            BooleanField::new('isDeleted')
         ];
     }
 
