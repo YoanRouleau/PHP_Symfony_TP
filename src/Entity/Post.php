@@ -48,6 +48,7 @@ class Post
      */
     private $title;
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -129,7 +130,6 @@ class Post
 
         return $this;
     }
-
 
 
 }
