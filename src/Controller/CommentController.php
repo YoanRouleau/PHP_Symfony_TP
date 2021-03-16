@@ -29,7 +29,7 @@ class CommentController extends AbstractController
         $comment = new Comment();
         $comment->setCreatedAt(new \DateTime("now"));
         $comment->setPost($post);
-        $comment->setAuthor($userRepository->findAll()[0]);
+        $comment->setAuthor($this->getUser());
 
 
         $form = $this->createForm(CommentType::class, $comment);
