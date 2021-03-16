@@ -10,7 +10,15 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+/**
+ * Class DashboardController
+ * @package App\Controller\Admin
+ *
+ * @IsGranted("ROLE_ADMIN", message="No access! Get out!")
+ */
 class DashboardController extends AbstractDashboardController
 {
     /**
