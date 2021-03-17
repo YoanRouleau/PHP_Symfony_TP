@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 
 class PostController extends AbstractController
@@ -39,7 +42,11 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/post/new/post', name: 'post_new')]
+
+    /**
+     * @Route("/post/new/post", name="post_new")
+     * @IsGranted("ROLE_ADMIN", message="No access! Get out!")
+     */
     public function new(Request $request, PostRepository $postRepository, UserRepository $user): Response{
         $post = new Post();
         $post->setCreatedAt(new \DateTime("now"));

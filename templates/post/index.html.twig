@@ -13,9 +13,11 @@
 <div class="example-wrapper">
     <h1>New articles</h1>
 
+    {% if is_granted('ROLE_ADMIN') %}
     <a href="/post/new/post">
         <span>Create a Post</span>
     </a>
+    {% endif %}
 
     {% for post in posts %}
         <a href="/post/{{ post.id }}" class="no-decoration">
