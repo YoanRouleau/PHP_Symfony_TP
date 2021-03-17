@@ -4,13 +4,16 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Post;
+use App\Form\PostType;
 use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use http\Env\Request;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 class PostController extends AbstractController
 {
@@ -33,6 +36,29 @@ class PostController extends AbstractController
             'controller_name' => 'PostController',
             'post' => $post,
             'comments' => $comments
+        ]);
+    }
+
+    #[Route('/post/new/post', name: 'post_new')]
+    public function new(Request $request, PostRepository $postRepository, UserRepository $user): Response{
+        $post = new Post();
+        $post->setCreatedAt(new \DateTime("now"));
+        $post->setAuthor($this->getUser());
+        $post->setIsPublished(true);
+        $post->setIsDeleted(false);
+
+        $form = $this->createForm(PostType::class, $post);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $this->getDoctrine()->getManager()->persist($post);
+            $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('post');
+        }
+
+        return $this->render('post/new.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 

@@ -13,6 +13,10 @@
 <div class="example-wrapper">
     <h1>New articles</h1>
 
+    <a href="/post/new/post">
+        <span>Create a Post</span>
+    </a>
+
     {% for post in posts %}
         <a href="/post/{{ post.id }}" class="no-decoration">
             <div>
