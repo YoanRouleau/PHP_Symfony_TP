@@ -7,6 +7,7 @@ use App\Entity\Post;
 use App\Entity\User;
 use App\Form\CommentType;
 use App\Repository\UserRepository;
+use App\Security\LoginFormAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
