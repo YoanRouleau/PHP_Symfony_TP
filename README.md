@@ -3,6 +3,8 @@
 ### A quoi sert le Symfony CLI ?
 Il permet notamment d'initialiser, reprendre ou gérer des projet symfony en ligne de commande. Il permet également de faire des check (sécurité, éléments requis, ...).
 
+*Extra*: CLI != console /!\ Le CLI est un wrapper qui peut également gérer la partie "cloud" d'un projet. 
+
 # Doctrine
 ### Quelles relations existent entre les entités (Many To One/Many To Many/...) ? Faire un schéma de la base de données.
 - Many to Many
@@ -11,6 +13,15 @@ Il permet notamment d'initialiser, reprendre ou gérer des projet symfony en lig
 - Many to One
 
 ![](https://i.imgur.com/qvwwJjF.png)
+
+*extra*:
+* Post a un author qui est un User -> **Many to One**
+* Post a des Comments -> **One to Many**
+* User a des Posts -> **One to Many**
+* User a des Comments -> **One to Many**
+* Comment est attaché à un Post -> 
+* Comment a un author qui est User
+
 
 ### Expliquer ce qu'est le fichier .env
 Le fichier .env est conçu pour recevoir les variables d'environnement, les données de connexion à la BDD ou aux API, ou toute données qui doivent être rendu secrètes.
@@ -51,10 +62,10 @@ On peut utiliser des thèmes. On peut également créer des templated sois-même
 
 # Security
 ### Définir les termes suivants : Encoder, Provider, Firewall, Access Control, Role, Voter
-* **Encoder** : S'occupe d'encoder les mots de passe si ceux-ci sont nécessaires. C'est un traitement qui est fait avant la sauvegarde en BDD. 
+* **Encoder** : S'occupe d'encoder les mots de passe si ceux-ci sont nécessaires. C'est un traitement qui est fait avant la sauvegarde en BDD. On spécifie également le type de hashage souhaité. 
 * **Provider** : Le user provider s'occupe de principalement 2 choses : Recharger l'utilisateur au sein d'une session, ou charger un utilisateur pour lui donner accès à des fonctionnalités. En gros, se sont des services qui permettent de manipuler et utiliser les users au sein de l'application.
 Par exemple, il existe un provider nommé "entity" qui permet simplement de récupérer des user en base. Il en existe beaucoup d'autre, et il est également possible d'en faire des custom.
-* **Firewall** : Permet de définir la manière par laquelle le user se connecte à l'application. 
+* **Firewall** : Permet de définir la manière par laquelle le user se connecte à l'application. C'est le videur de la boite de nuit.
 * **Access Control** : Fonctions qui permettent de vérifier les différents états d'un utilisateur (savoir s'il a accès à certaines choses avec is_granted, savoir s'il est bien connecté, ...)
 * **Role** : Les rôles sont utilisés principalement pour établir une hierarchie de privilèges au sein d'un site. Cela permet de bloquer de grant des accès à certaines fonctionnalités en fonction des rôles de la personne connectée.
 * **Voter** : Les voters sont le moyen le plus puissant de Symfony pour gérer les permissions. Ils permettent de centraliser toute la logique des permissions, puis de les réutiliser à de nombreux endroits.
@@ -72,3 +83,19 @@ Nous ne l'utiliserons pas car, dans notre cas, c'est une solution trop poussée 
 ### Expliquer le principe de hachage.
 ![](https://i.imgur.com/DxkuGA5.png)
 Le hashing permet, à partir d'une chaine de caractère et d'un algorythme spécifique, créer une nouvelle chaine de caractères complexe générée par plusieurs procédés. Ceux-ci dépendent du hasher utilisé. 
+
+
+# Services
+
+### À quoi sert un service dans Symfony ?
+Les services sont des objets PHP rendus disponibles à l'application : il en existe beaucoup, et sont conçu pour réaliser des tâches particulières. 
+
+### Avez-vous déjà utilisé des services dans ce projet ? Si oui, lesquels ?
+Dans l'état actuel du TP, on utilise plus d'une 100aine de services (CF: php bin/console debug:container).
+
+### Définir les termes suivant : Dependency Injection, Service, Autowiring, Container
+* **Dependency Injection** : Concept permettant la simplification d'appel de service au sein d'un fichier.
+* **Container** : énorme ''boite'' qui contient toutes les instances des services utilisés dans l'application.
+* **Service** : Classe utile à l'application
+* **Autowiring** : L'autowire correspond à l'état que peut prendre un service : s'il est autowired, alors le service peut être immédiatement utilisé. 
+
